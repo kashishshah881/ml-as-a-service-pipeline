@@ -1,4 +1,4 @@
-# EGDAR NLP REST Pipeline
+# EGDAR Sentiment Analysis Data Pipeline on Kubernetes Engine
 
 This Project has 4 Stages
 1. Annotation Pipeline
@@ -21,7 +21,7 @@ This Project has 4 Stages
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your Cloud Environment 
+These instructions will get you a copy of the project up and running on your Local Environment using Cloud Infrastructure 
 ```
 git clone www.github.com/kashishshah881/ml-as-a-service-pipeline
 ```
@@ -36,30 +36,62 @@ Microsoft Azure Account
 ```
 
 ### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+What things you need to install the software:
 ```
-Give the example
+pip3 install -r requirements.txt
 ```
 
-And repeat
+### Steps For Running on AWS EC2 Cloud
 
-```
-until finished
-```
+##### Step 1:
+- Create Multiple AWS S3 Buckets
+- Configure IAM Role having Full S3 Bucket Access in your local environment. Learn More [Here](https://docs.databricks.com/administration-guide/cloud-configurations/aws/iam-roles.html#step-1-create-an-iam-role-and-policy-to-access-an-s3-bucket)
+- Create a GCP Account. Get Started [Here](cloud.google.com)
+- Create an Azure Account. Get Started [Here](azure.microsoft.com)
+- Request a [Metaflow Sandbox](https://www.metaflow.org/sandbox/) to run your pipeline on AWS Batch.
+##### Step 2:
+- Once Everything is setup, Configure Metaflow's Sandbox. Run ``` metaflow configure sandbox ``` on CLI. Enter The API Keys from Step 1 <br>
+- Configure the input/output buckets on AWS S3 and Enter the bucket name in [Annotation Pipeline](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/Annotation%20Pipeline/index.py#L41-L42) , [ML Pipeline](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/ML%20Pipeline/index.py#L37-L39) , [Inference Pipeline](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/Inference%20Pipeline/index.py#L28-L29)
+and [Flask App](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/REST%20Flask%20App/app.py#L26)
+- Lastly, add the Azure Api Keys [Here](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/Annotation%20Pipeline/index.py#L21-L22)
+##### Step 3:
+Run on CLI <br>
+- Change the permission of the files
+>```chmod a+x Annotation\ Pipeline/index.py ML\ Pipeline/index.py Inference\ Pipeline/index.py ```<br>
+- Running the Annotation Pipeline
+>```./Annotation\ Pipeline/index.py run --with sandbox ``` <br>
+- Running the Machine Learning Pipeline
+>```./ML\ Pipeline/index.py run --with sandbox ``` <br>
+- Creating a docker container of the flask app <br>
+> ```cd REST\ Flask\ App/ ``` <br>
+> ```docker build . ``` <br>
+> ``` docker login --username=yourhubusername --email=youremail@company.com ``` <br>
+> ``` docker push yourhubusername/reponame ``` <br>
 
-End with an example of getting some data out of the system or using it for a little demo
+##### Step 4:
+Once the Dockerized Flask App is in the repo in Step 3,
+Create a Kubernetes Cluster on Google Cloud Product and Deploy your Docker File From Hub. Learn More [Here](https://codeburst.io/getting-started-with-kubernetes-deploy-a-docker-container-with-kubernetes-in-5-minutes-eb4be0e96370) <br>
+Now Your Flask App Is Up! and Accessible from Anywhere Across The World!
+
+##### Step 5:
+Add the required Tickerfile bucket location in [Inference Pipeline](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/Inference%20Pipeline/index.py#L83) <br>
+Add the IP Address and Port Number Obtained from The GCP Kubernetes Cluster in [Inference Pipeline](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/Inference%20Pipeline/index.py#L157)
+
+
+
+
+
+
+
+
 
 
 
 ## Built With
 
 * [Flask](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [MetaFlow](https://maven.apache.org/) - Pipeline Creation
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [MetaFlow](https://maven.apache.org/) - Pipeline Framework
+* [TensorFlow](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 
 ## Versioning
@@ -112,41 +144,4 @@ SmartyPants converts ASCII punctuation characters into "smart" typographic punct
 |Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
 
 
-## KaTeX
 
-You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
-
-The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
-
-$$
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
-
-> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
-
-
-## UML diagrams
-
-You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
-
-```mermaid
-sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
-```
-
-And this will produce a flow chart:
-
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
