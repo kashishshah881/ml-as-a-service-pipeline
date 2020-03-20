@@ -4,8 +4,8 @@
 
 
 
-The goal of this project is to create a data pipeline which creates a labeled dataset, using which we train a ML Model Pipeline and Deploy a Flask App on a Kubernetes Cluster.
-
+#### The Goal of this project is to create a data pipeline which creates a labeled dataset, using which we train a ML Model Pipeline and Deploy a Flask App on a Kubernetes Cluster. Everything is Managed On the Cloud. <br>
+# Lets Get Started!
 
 This Project has 4 Stages
 1. Annotation Pipeline
