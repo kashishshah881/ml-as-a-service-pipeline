@@ -1,5 +1,7 @@
 # EGDAR Sentiment Analysis Data Pipeline on Kubernetes Engine
 
+The goal of this project is to create a data pipeline which creates a labeled dataset, using which we train a ML Model Pipeline and Deploy a Flask App on a Kubernetes Cluster.
+
 This Project has 4 Stages
 1. Annotation Pipeline
    - This is the starting point for the main pipeline. 
@@ -75,73 +77,30 @@ Now Your Flask App Is Up! and Accessible from Anywhere Across The World!
 
 ##### Step 5:
 Add the required Tickerfile bucket location in [Inference Pipeline](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/Inference%20Pipeline/index.py#L83) <br>
+Add Bucket Location [Inference Pipeline](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/Inference%20Pipeline/index.py#L28-L29) <br>
 Add the IP Address and Port Number Obtained from The GCP Kubernetes Cluster in [Inference Pipeline](https://github.com/kashishshah881/ml-as-a-service-pipeline/blob/master/Inference%20Pipeline/index.py#L157)
-
-
-
-
-
-
-
-
 
 
 
 ## Built With
 
-* [Flask](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [MetaFlow](https://maven.apache.org/) - Pipeline Framework
-* [TensorFlow](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [MetaFlow](https://metaflow.org) - Data Pipeline Framework
+* [TensorFlow](https://www.tensorflow.org/) - Machine Learning Model
+* [Docker](https://www.docker.com) - Container Environment
+* [Flask](https://flask.palletsprojects.com/en/1.1.x/) -  Web Framework 
+* [AWS Batch](https://aws.amazon.com/batch/) - Cloud Infrastructure for Big Data Pipeline
+* [Azure Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/) - NLP Text Analytics API
+* [Google Cloud Engine](https://cloud.google.com/kubernetes-engine) - Kubernetes Cluster Engine
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Kashish Shah** - *Design, Architect and Deployment* - [Linkedin](https://linkedin.com/in/shah-kashish)
+* **Manogana Mantripragada** - *Machine Learning Engineer* - [Linkedin](https://www.linkedin.com/in/manogna-mantripragada/)
+* **Dhruv Panchal** - *Research* - [Linkedin](https://www.linkedin.com/in/panchaldhruv/)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## SmartyPants
-
-SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
-
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-
-
+This project is licensed under the Commons Clause License - see the [LICENSE.md](https://commonsclause.com) file for details
 
