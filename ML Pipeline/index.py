@@ -28,27 +28,11 @@ import boto3
 
 
 
-########## Never hardcode the keys! Save it in the environment variables. More Info: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html
-ACCESS_KEY = "" 
-SECRET_KEY = ""
-SESSION_TOKEN = ""
-######################################################
-
 
 #Authenticate the AWS Credentials
-s3_client = boto3.client('s3', 
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-    aws_session_token=SESSION_TOKEN) 
-
-
-
-s3_resource = boto3.resource('s3',  
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-    aws_session_token=SESSION_TOKEN)
-
-s3_fs = s3fs.core.S3FileSystem(anon=False,key=ACCESS_KEY,secret=SECRET_KEY,token=SESSION_TOKEN)
+s3_client = boto3.client('s3') 
+s3_resource = boto3.resource('s3')
+s3_fs = s3fs.core.S3FileSystem(anon=False)
 
 input_bucket = "" #Enter Bucket name where output.csv is saved from Part 1
 key = 'output.csv'
@@ -102,7 +86,7 @@ class LinearFlow(FlowSpec):
         self.opt = 'adamax'
         self.model.compile(optimizer=self.opt,loss=tf.keras.losses.binary_crossentropy,metrics=['accuracy'])
         self.history = self.model.fit(self.X_train, self.Y_train,epochs=20,validation_data= (self.X_val, self.Y_val),shuffle = True,batch_size = 10,callbacks=[self.es, self.mc],verbose=1)
-        model = model.save(s3fs.put('model.h5',output_bucket))
+        model = model.save(s3_fs.put('model.h5',output_bucket))
         print("Saved model to bucket")
 
 

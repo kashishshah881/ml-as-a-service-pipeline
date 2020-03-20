@@ -17,11 +17,6 @@ import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
-########## Never hardcode the keys! Save it in the environment variables. More Info: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html
-ACCESS_KEY = "" 
-SECRET_KEY = ""
-SESSION_TOKEN = ""
-######################################################
 #enter your azure key and endpoint from azure text analytics algo
 key = ""
 endpoint = ""
@@ -35,17 +30,11 @@ def authenticate_client():
 #Authenticate the AWS Credentials
 
 client = authenticate_client()
-s3_client = boto3.client('s3', 
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-    aws_session_token=SESSION_TOKEN) 
+s3_client = boto3.client('s3') 
 
 
 
-s3_resource = boto3.resource('s3',  
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-    aws_session_token=SESSION_TOKEN)
+s3_resource = boto3.resource('s3')
 
 
 

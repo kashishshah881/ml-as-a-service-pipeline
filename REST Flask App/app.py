@@ -12,32 +12,18 @@ import s3fs
 
 
 
-
-########## Never hardcode the keys! Save it in the environment variables. More Info: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html
-ACCESS_KEY = "" 
-SECRET_KEY = ""
-SESSION_TOKEN = ""
-######################################################
-
-
 #Authenticate the AWS Credentials
-s3_client = boto3.client('s3', 
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-    aws_session_token=SESSION_TOKEN) 
+s3_client = boto3.client('s3') 
 
 
 
-s3_resource = boto3.resource('s3',  
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-    aws_session_token=SESSION_TOKEN)
+s3_resource = boto3.resource('s3')
 
-s3_fs = s3fs.core.S3FileSystem(anon=False,key=ACCESS_KEY,secret=SECRET_KEY,token=SESSION_TOKEN)
+s3_fs = s3fs.core.S3FileSystem(anon=False)
 
 
 
-model = keras.models.load_model(s3_fs.open('Enter saved model location ', mode='rb'),custom_objects={'KerasLayer':hub.KerasLayer})
+model = keras.models.load_model(s3_fs.open(' Output Bucket from ML Pipeline  ', mode='rb'),custom_objects={'KerasLayer':hub.KerasLayer})
 
 app = Flask(__name__)
 

@@ -18,27 +18,10 @@ ssl._create_default_https_context = ssl._create_unverified_context
 import s3fs
 
 
-########## Never hardcode the keys! Save it in the environment variables. More Info: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html
-ACCESS_KEY = "" 
-SECRET_KEY = ""
-SESSION_TOKEN = ""
-######################################################
 
-#Authenticate the AWS Credentials
-
-client = authenticate_client()
-s3_client = boto3.client('s3', 
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-    aws_session_token=SESSION_TOKEN) 
-
-
-
-s3_resource = boto3.resource('s3',  
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-    aws_session_token=SESSION_TOKEN)
-s3_fs = s3fs.core.S3FileSystem(anon=False,key=ACCESS_KEY,secret=SECRET_KEY,token=SESSION_TOKEN)
+s3_client = boto3.client('s3') 
+s3_resource = boto3.resource('s3')
+s3_fs = s3fs.core.S3FileSystem(anon=False)
 
 
 
@@ -97,7 +80,7 @@ AMZN
 FB
 SNAP
 '''
-csv_file = csv.reader(s3.open('bucket location for ticker file','rb'))
+csv_file = csv.reader(s3_fs.open('bucket location for ticker file','rb'))
 
 
 #loop through csv list
