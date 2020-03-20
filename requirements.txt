@@ -1,0 +1,17 @@
+boto3==1.12.3
+h5py==2.10.0
+s3fs==0.4.0
+Keras==2.3.1
+tensorflow_datasets==2.1.0
+numpy==1.17.4
+joblib==0.14.1
+Flask==1.1.1
+pandas==0.25.3
+requests==2.22.0
+metaflow==2.0.2
+Scrapy==1.8.0
+tensorflow_hub==0.7.0
+tensorflow==2.1.0
+azure_storage==0.36.0
+scikit_learn==0.22.2.post1
+unicode_slugify==0.1.3
