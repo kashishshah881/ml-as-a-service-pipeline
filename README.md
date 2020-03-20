@@ -14,21 +14,25 @@ This Project has 4 Stages
    - The Flask App is tested inside a Docker Container
    - The Docker Container is Deployed on a Google Cloud Kubernetes Engine
 4. Inference Pipeline
-   - Inference Pipeline is Automating Web Scraping Libr
-   - 
-   - 
+   - Inference Pipeline is an Automated Sentiment Analysis Pipeline
+   - It scrapes EDGAR Earning Call Transcript Data and stores it in the cloud
+   - Using the Flask Webapp in Stage 3, It predicts the sentiment of the document.
 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your Cloud Environment 
+```
+git clone www.github.com/kashishshah881/ml-as-a-service-pipeline
+```
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 ```
-Give examples
+Python3.7
+AWS Account
+GCP Account
+Microsoft Azure Account
 ```
 
 ### Installing
@@ -49,39 +53,14 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [Flask](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [MetaFlow](https://maven.apache.org/) - Pipeline Creation
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
