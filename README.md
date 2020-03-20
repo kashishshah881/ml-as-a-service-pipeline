@@ -1,6 +1,11 @@
 # EGDAR Sentiment Analysis Data Pipeline on Kubernetes Engine
+![Cover Image](/data/cover.png)
+
+
+
 
 The goal of this project is to create a data pipeline which creates a labeled dataset, using which we train a ML Model Pipeline and Deploy a Flask App on a Kubernetes Cluster.
+
 
 This Project has 4 Stages
 1. Annotation Pipeline
