@@ -14,7 +14,7 @@ This Project has 4 Stages
    - Entire Database is stored in a AWS S3 bucket 
 2. Machine Learning Pipeline
    - This is the second pipeline.
-   - The Database creates in the Annotation Pipeline is used to train our model
+   - The Database created in the Annotation Pipeline is used to train our model
    - The trained model is stored on a S3 bucket
 3. REST Flask App
    - The trained model is incubated in a Python Flask REST App
